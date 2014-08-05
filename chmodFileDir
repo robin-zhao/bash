@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Change all dirs of current folder into 755 and files into 644
+#
+# Author: Jian (Robin) ZHAO 
+#
+# Email: boborabit@gmail.com
+
+if [ $# -lt 1 ]
+then
+    echo "Argument error!";
+    exit 1;
+fi
+
+[ ! -d $1 ] && echo "Argument 1 must be folder!" && exit 1
+
+echo "Converting $1  ..."
+find $1 -type f -print0 | xargs -0 sudo chmod 644
+find $1 -type d -print0 | xargs -0 sudo chmod 755
+
+echo "Files inside $1 has been set to 755 and folders to 644."
