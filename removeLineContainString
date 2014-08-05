@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Romve lines from file which contains a string.
+#
+#  Usage: removeLinesContainString filename string
+#
+# Author: Jian (Robin) ZHAO 
+#
+# Email: boborabit@gmail.com
+
+string=$2
+file=$1
+sed -i "/${string}/d" ${file}
