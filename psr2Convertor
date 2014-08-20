@@ -1,0 +1,34 @@
+#!/bin/bash
+#
+# add/Remove space for control structure
+# 
+#
+# Author: Jian (Robin) ZHAO 
+#
+# Email: boborabit@gmail.com
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+file=$1
+#if( => if (
+sed -r -i 's/if\(/if \(/g' ${file};
+#if      ( => if (
+sed -r -i 's/if\s+\(/if \(/g' ${file};
+#if (true){ => if(true) {
+sed -r -i 's/\)\{/\) \{/g' ${file};
+#if (true)     { => if (true) {
+sed -r -i 's/\)\s+\{/\) \{/g' ${file};
+#if (   true) => if (true)
+sed -r -i 's/(if \()\s+/\1/g' ${file};
+# if (true   ) => if (true)
+sed -r -i 's/([^\s])\s+\)/\1\)/g' ${file};
+
+
+# remove ending spaces.
+sed -r -i 's/([^\s])\s+$/\1/g' ${file}
+
+# remove multiple nuw lines
+${dir}/removeMultipleNewLines ${file}
+
+# convert underscore variable to camelCase
+${dir}/underscoreToCamelCase ${file}
+# todo: expand to other keywords, switch, while, foreach, blabla...

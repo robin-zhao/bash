@@ -6,4 +6,4 @@
 #
 # Email: boborabit@gmail.com
 
-sed '/^$/N;/^\n$/D' $1
+sed -i '/^$/N;/^\n$/D' $1
