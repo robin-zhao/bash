@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Replace \ to / in a string.
+# 
+# namespaceToPath 'a\b\c\d'  => output a/b/c/d
+#
+# Author: Jian (Robin) ZHAO 
+#
+# Email: boborabit@gmail.com
+
+
+echo $1 | sed 's/\\/\//g';
+
