@@ -1,0 +1,53 @@
+#!/bin/bash
+# @file mysqldumpFromRemoteDb
+#
+# @author Jian (Robin) ZHAO 
+#
+# @email boborabit@gmail.com
+#
+# This script is supposed to called by a parent script, 
+# which contains mysql configuration required by this script.
+# basicly look like follows:
+
+#export remote_host='';
+#export remote_user='';
+#export remote_pass='';
+#export remote_db='';
+
+#export local_host='';
+#export local_user='';
+#export local_pass='';
+#export local_db='';
+
+#dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#${dir}/mysqldumpFromRemoteDb $1 $2
+
+
+if [ -z "${remote_host}" ]; then
+  echo "remote_host is not defined!";
+  exit;
+fi
+
+case $# in
+  1)
+    mysqldump --skip-triggers --no-data --skip-add-drop-table -u${remote_user} -h${remote_host} -p${remote_pass}  ${remote_db} $1 > /tmp/$1.schema.sql
+    mysqldump --skip-triggers --no-create-info --insert-ignore -u${remote_user} -h${remote_host} -p${remote_pass}  ${remote_db} $1 > /tmp/$1.data.sql
+  ;;
+  2)
+    mysqldump --skip-triggers --no-data --skip-add-drop-table -u${remote_user} -h${remote_host} -p${remote_pass}  ${remote_db} $1 > /tmp/$1.schema.sql
+    mysqldump --skip-triggers --no-create-info --insert-ignore -u${remote_user} -h${remote_host} -p${remote_pass}  ${remote_db} $1 --where="$2" > /tmp/$1.data.sql
+  ;;
+  *)
+    echo "Usage: $0 table [where]";
+    echo "$0 user \"username = 'jzhao'\"";
+    exit 1;
+esac
+
+
+[ ! -f /tmp/$1.schema.sql ] && exit;
+
+sed -i 's/CREATE TABLE/CREATE TABLE IF NOT EXISTS/g' /tmp/$1.schema.sql
+
+mysql -h${local_host} -u${local_user} -p${local_pass} ${local_db} < /tmp/$1.schema.sql
+mysql -h${local_host} -u${local_user} -p${local_pass} ${local_db}< /tmp/$1.data.sql
+
