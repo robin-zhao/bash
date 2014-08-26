@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# add/Remove space for control structure
+# Drupal code compliance.
 # 
 #
 # Author: Jian (Robin) ZHAO 
@@ -9,19 +9,26 @@
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 file=$1
-#if( => if (
-sed -r -i 's/if\(/if \(/g' ${file};
-#if      ( => if (
-sed -r -i 's/if\s+\(/if \(/g' ${file};
-#if (true){ => if(true) {
-sed -r -i 's/\)\{/\) \{/g' ${file};
-#if (true)     { => if (true) {
-sed -r -i 's/\)\s+\{/\) \{/g' ${file};
-#if (   true) => if (true)
-sed -r -i 's/(if \()\s+/\1/g' ${file};
-# if (true   ) => if (true)
-sed -r -i 's/([^\s])\s+\)/\1\)/g' ${file};
-
+control[1]='if';
+control[2]='foreach';
+control[3]='for';
+for i in ${control[*]};do
+  #if( => if (
+  tmpRegex="s/(${i})\(/\1 \(/g"
+  sed -r -i "${tmpRegex}" ${file};
+  #if      ( => if (
+  tmpRegex="s/(${i})\s+\(/\1 \(/g"
+  sed -r -i "${tmpRegex}" ${file};
+  #if (true){ => if(true) {
+  sed -r -i 's/\)\{/\) \{/g' ${file};
+  #if (true)     { => if (true) {
+  sed -r -i 's/\)\s+\{/\) \{/g' ${file};
+  #if (   true) => if (true)
+  tmpRegex="s/(${i} \()\s+/\1/g"
+  sed -r -i "${tmpRegex}" ${file};
+  # if (true   ) => if (true)
+  sed -r -i 's/([^\s])\s+\)/\1\)/g' ${file};
+done
 
 # remove ending spaces.
 sed -r -i 's/([^\s])\s+$/\1/g' ${file}
@@ -30,5 +37,13 @@ sed -r -i 's/([^\s])\s+$/\1/g' ${file}
 ${dir}/removeMultipleNewLines ${file}
 
 # convert underscore variable to camelCase
-${dir}/underscoreToCamelCase ${file}
+#${dir}/underscoreToCamelCase ${file}
+
+# convert null, false, true into upperCase
+${dir}/upperCase ${file}
+
+${dir}/formatComment ${file}
+
+sed -i -r 's/,([^[:blank:]])/, \1/g' ${file}
+
 # todo: expand to other keywords, switch, while, foreach, blabla...
