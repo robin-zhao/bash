@@ -38,12 +38,19 @@ ${dir}/removeMultipleNewLines ${file}
 
 # convert underscore variable to camelCase
 #${dir}/underscoreToCamelCase ${file}
+${dir}/camelCaseToUnderscore ${file}
 
 # convert null, false, true into upperCase
 ${dir}/upperCase ${file}
 
 ${dir}/formatComment ${file}
 
+# add space after comma
 sed -i -r 's/,([^[:blank:]])/, \1/g' ${file}
 
+# replace tab
+sed -i 's/\t/  /g' ${file}
 # todo: expand to other keywords, switch, while, foreach, blabla...
+
+
+
