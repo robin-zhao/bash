@@ -15,7 +15,7 @@ for i in $(git diff --name-only); do
 done
 
 # add untracked files
-for i in $(git ls-files . --exclude-standard --others); do
-  git add ${dir}/${i}
+for i in $(git ls-files ${dir} --exclude-standard --others); do
+  git add $(pwd)/${i}
 done
 

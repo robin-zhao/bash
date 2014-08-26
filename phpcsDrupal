@@ -1,0 +1,2 @@
+#!/bin/bash
+phpcs --standard=/usr/share/php/PHP/CodeSniffer/Standards/Drupal $1
