@@ -2,9 +2,9 @@
 #
 # Replace a string by another in the file
 #
-# Author: Jian (Robin) ZHAO 
+# @author Jian (Robin) ZHAO 
 #
-# Email: boborabit@gmail.com
+# @email boborabit@gmail.com
 
 file=$1
 old=$2

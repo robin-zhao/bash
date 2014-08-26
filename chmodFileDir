@@ -2,9 +2,9 @@
 #
 # Change all dirs of current folder into 755 and files into 644
 #
-# Author: Jian (Robin) ZHAO 
+# @author Jian (Robin) ZHAO 
 #
-# Email: boborabit@gmail.com
+# @email boborabit@gmail.com
 
 if [ $# -lt 1 ]
 then

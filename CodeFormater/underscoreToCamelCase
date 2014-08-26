@@ -2,9 +2,9 @@
 #
 # Convert php variables from underscore format to camelCase
 #
-# Author: Jian (Robin) ZHAO 
+# @author Jian (Robin) ZHAO 
 #
-# Email: boborabit@gmail.com
+# @email boborabit@gmail.com
 
 filename=$1
 

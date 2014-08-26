@@ -2,9 +2,9 @@
 #
 # Replace a string by another in all files of current directory recursively.
 #
-# Author: Jian (Robin) ZHAO 
+# @author Jian (Robin) ZHAO 
 #
-# Email: boborabit@gmail.com
+# @email boborabit@gmail.com
 
 
 [ $# -eq 3 ] && echo "replacing $1 to $2" || echo "Need exactly two arguments!"

@@ -1,11 +1,11 @@
 #!/bin/bash
 #
 # Drupal code compliance.
-# 
 #
-# Author: Jian (Robin) ZHAO 
+# @author Jian (Robin) ZHAO 
 #
-# Email: boborabit@gmail.com
+# @email boborabit@gmail.com
+
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 file=$1
@@ -33,33 +33,28 @@ done
 # remove ending spaces.
 sed -r -i 's/([^\s])\s+$/\1/g' ${file}
 
-# remove multiple nuw lines
+# remove multiple nuw lines.
 ${dir}/removeMultipleNewLines ${file}
 
-# convert underscore variable to camelCase
+# convert underscore variable to camelCase.
 #${dir}/underscoreToCamelCase ${file}
 ${dir}/camelCaseToUnderscore ${file}
 
-# convert null, false, true into upperCase
+# convert null, false, true into upperCase.
 ${dir}/upperCase ${file}
 
 # format double slash comment.
 ${dir}/formatComment ${file}
 
-# add space after comma
+# add space after comma.
 sed -i -r 's/,([^[:blank:]])/, \1/g' ${file}
 
-# replace tab
+# replace tab by 2 spaces.
 sed -i 's/\t/  /g' ${file}
-
-# todo: expand to other keywords, switch, while, foreach, blabla...
 
 # drupal don't like private keyword.
 sed -i -r 's/(\s)private(\s)/ protected /g' ${file}
 
 # concat operator with space.
 ${dir}/formatConcat ${file}
-
-
-
 
