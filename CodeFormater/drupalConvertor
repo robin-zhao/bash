@@ -43,6 +43,7 @@ ${dir}/camelCaseToUnderscore ${file}
 # convert null, false, true into upperCase
 ${dir}/upperCase ${file}
 
+# format double slash comment.
 ${dir}/formatComment ${file}
 
 # add space after comma
@@ -50,7 +51,15 @@ sed -i -r 's/,([^[:blank:]])/, \1/g' ${file}
 
 # replace tab
 sed -i 's/\t/  /g' ${file}
+
 # todo: expand to other keywords, switch, while, foreach, blabla...
+
+# drupal don't like private keyword.
+sed -i -r 's/(\s)private(\s)/ protected /g' ${file}
+
+# concat operator with space.
+${dir}/formatConcat ${file}
+
 
 
 
