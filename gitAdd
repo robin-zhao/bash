@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# git add alternative
+#
+# @author Jian (Robin) ZHAO
+#
+# @email boborabit@gmail.com
+#
+
+dir=$(git rev-parse --show-toplevel)
+
+# add modified files
+for i in $(git diff --name-only); do
+  git add ${dir}/${i}
+done
+
+# add untracked files
+for i in $(git ls-files . --exclude-standard --others); do
+  git add ${dir}/${i}
+done
+
