@@ -19,16 +19,17 @@ for i in ${control[*]};do
   #if      ( => if (
   tmpRegex="s/(${i})\s+\(/\1 \(/g"
   sed -r -i "${tmpRegex}" ${file};
-  #if (true){ => if(true) {
-  sed -r -i 's/\)\{/\) \{/g' ${file};
-  #if (true)     { => if (true) {
-  sed -r -i 's/\)\s+\{/\) \{/g' ${file};
   #if (   true) => if (true)
   tmpRegex="s/(${i} \()\s+/\1/g"
   sed -r -i "${tmpRegex}" ${file};
-  # if (true   ) => if (true)
-  sed -r -i 's/([^\s])\s+\)/\1\)/g' ${file};
 done
+
+#if (true){ => if(true) {
+sed -r -i 's/\)\{/\) \{/g' ${file};
+#if (true)     { => if (true) {
+sed -r -i 's/\)\s+\{/\) \{/g' ${file};
+# if (true   ) => if (true)
+sed -r -i 's/([a-zA-Z_0-9]+)\s+\)/\1\)/g' ${file};
 
 # remove ending spaces.
 sed -r -i 's/([^\s])\s+$/\1/g' ${file}
@@ -57,4 +58,7 @@ sed -i -r 's/(\s)private(\s)/ protected /g' ${file}
 
 # concat operator with space.
 ${dir}/formatConcat ${file}
+
+# prepend filedoc, function doc.
+${dir}/prependDoc ${file}
 
