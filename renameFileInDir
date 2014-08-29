@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Rename files by pattern.
+#
+# @author Jian (Robin) ZHAO 
+#
+# @email boborabit@gmail.com
+
+
+old=$1
+new=$2
+
+for file in $(find . -type f -name "${old}"); do
+  pattern="s/${old}/${new}/";
+  mv $file `echo $file | sed -r "${pattern}"`;
+done;
+
