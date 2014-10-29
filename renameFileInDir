@@ -5,12 +5,23 @@
 # @author Jian (Robin) ZHAO 
 #
 # @email boborabit@gmail.com
+#
+# Usage:  renameFileInDir "(.*)DEF(.*)" "\1\2"
+#         The above command will remame all files contains "DEF"
+#         For instance   ABCDEFGH.php -> ABCFGH.ph 
 
 
 old=$1
 new=$2
 
-for file in $(find . -type f -name "${old}"); do
+function escapeParenthesis
+{
+  echo $1 | sed -r "s/(\(|\))/\\\\\1/g" 
+}
+
+findPattern=$(escapeParenthesis ${old});
+
+for file in $(find . -type f -regex "${findPattern}" -regextype 'grep'); do
   pattern="s/${old}/${new}/";
   mv $file `echo $file | sed -r "${pattern}"`;
 done;
