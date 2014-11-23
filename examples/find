@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# find except git dir.
+find . -path ./.git -prune -o -print0

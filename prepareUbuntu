@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# My must-have bundle, in one script.
+#
+# @author Jian Zhao <boborabit@gmail.com>
+#
+
+# Terminal
+apt-get install terminator
+
+# chromium
+apt-get install chromium-browser
+
+# diffmerge
+apt-get install diffmerge
+
+# xdebug
+apt-get install kcachegrind
+
+# remote access
+apt-get install remmina
+
+# postfix
+apt-get install postfix
+#dpkg-reconfigure postfix
+# https://help.ubuntu.com/community/Postfix
+# https://www.digitalocean.com/community/tutorials/how-to-install-and-setup-postfix-on-ubuntu-12-04
+
+# /var/mail/username
