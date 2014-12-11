@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+# Format else.
+#
+# @author Jian (Robin) ZHAO 
+#
+# @email boborabit@gmail.com
+
+file=$1
+
+#replace "else if" by "elseif"
+sed -i -r 's/else if( \()/elseif\1/g' ${file}
+
+#else{ => else {
+sed -i -r 's/(else(if)?)\s*\{/\1 \{/g' ${file}
+
+#split "} elseif (" into two lines.
+for i in $(getKeywordLines "\}\s*else(if)?" ${file}); do
+  sed -i -r 's/\}\s*(else(if)?)/\1/g' ${file}
+  numSpaces=$(intentPosition ${file} ${i});
+  appendLine ${file} "$(( ${i} - 1 ))" "\}" ${numSpaces};
+done;

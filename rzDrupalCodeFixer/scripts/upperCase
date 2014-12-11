@@ -1,0 +1,11 @@
+#!/bin/bash
+#
+# Change matche string to upper case.
+#
+# @author Jian (Robin) ZHAO 
+#
+# @email boborabit@gmail.com
+
+filename=$1
+
+sed -i -r 's/([^a-zA-Z])(null|false|true)([^a-zA-Z]|$)/\1\U\2\3/g' ${filename}

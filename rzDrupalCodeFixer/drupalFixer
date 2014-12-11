@@ -1,0 +1,84 @@
+#!/bin/bash
+#
+# Drupal code standard fixer.
+#
+# @author Jian (Robin) ZHAO 
+#
+# @email boborabit@gmail.com
+
+
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+dir=${dir}/scripts
+
+# include the functions.
+source ${dir}/functions
+
+# format else keyword.
+${dir}/formatElse $1
+
+
+
+if [ ! -d ${dir} ]; then
+  echo "Error: scripts directory missing.";
+  exit 1;
+fi
+
+if [ ! -f $1 ]; then
+  echo "Error: $1 not found.";
+  exit 1;
+fi
+
+file=$1
+control[1]='if';
+control[2]='foreach';
+control[3]='for';
+for i in ${control[*]};do
+  #if( => if (
+  tmpRegex="s/(${i})\(/\1 \(/g"
+  sed -r -i "${tmpRegex}" ${file};
+  #if      ( => if (
+  tmpRegex="s/(${i})\s+\(/\1 \(/g"
+  sed -r -i "${tmpRegex}" ${file};
+  #if (   true) => if (true)
+  tmpRegex="s/(${i} \()\s+/\1/g"
+  sed -r -i "${tmpRegex}" ${file};
+done
+
+#if (true){ => if(true) {
+sed -r -i 's/\)\{/\) \{/g' ${file};
+#if (true)     { => if (true) {
+sed -r -i 's/\)\s+\{/\) \{/g' ${file};
+# if (true   ) => if (true)
+sed -r -i 's/([a-zA-Z_0-9]+)\s+\)/\1\)/g' ${file};
+
+# remove ending spaces.
+sed -r -i 's/([^\s])\s+$/\1/g' ${file}
+
+# remove multiple nuw lines.
+${dir}/removeMultipleNewLines ${file}
+
+# convert underscore variable to camelCase.
+#${dir}/underscoreToCamelCase ${file}
+${dir}/camelCaseToUnderscore ${file}
+
+# convert null, false, true into upperCase.
+${dir}/upperCase ${file}
+
+# format double slash comment.
+${dir}/formatComment ${file}
+
+# add space after comma.
+sed -i -r 's/,([^[:blank:]])/, \1/g' ${file}
+
+# replace tab by 2 spaces.
+sed -i 's/\t/  /g' ${file}
+
+# drupal don't like private keyword.
+sed -i -r 's/(\s)private(\s)/ protected /g' ${file}
+
+# concat operator with space.
+${dir}/formatConcat ${file}
+
+# prepend filedoc, function doc.
+${dir}/prependDoc ${file}
+

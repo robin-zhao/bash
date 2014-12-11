@@ -1,0 +1,19 @@
+#!/bin/bash
+#
+# Format comment.
+#
+# @author Jian (Robin) ZHAO 
+#
+# @email boborabit@gmail.com
+
+filename=$1
+
+# replace inline comment by double slash.
+sed -i -r 's/(\/[\*]+\s+)(.*)(\*\/$)/\/\/ \2/g' ${filename}
+
+# uppercase first char.
+sed -i -r 's/([^:]\/\/)\s?([a-zA-Z])/\1 \U\2/g' ${filename}
+
+# fullstop.
+sed -i -r 's/([^:]\/\/.*[^\?\.\;])$/\1./g' ${filename}
+

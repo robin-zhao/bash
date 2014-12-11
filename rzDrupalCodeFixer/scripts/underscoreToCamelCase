@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Convert php variables from underscore format to camelCase
+#
+# @author Jian (Robin) ZHAO 
+#
+# @email boborabit@gmail.com
+
+filename=$1
+
+grep -E '(\$[a-zA-Z]+)_([a-z])([a-zA-Z_]+)' ${filename} > /dev/null
+
+while [ $? -eq 0 ]; do
+  sed -i.bak -r 's/(\$[a-zA-Z]+)_([a-z])([a-zA-Z_]+)/\1\U\2\L\3/g' ${filename}
+  grep -E '(\$[a-zA-Z]+)_([a-z])([a-zA-Z_]+)' ${filename} > /dev/null
+done
+

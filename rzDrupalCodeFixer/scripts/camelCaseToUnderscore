@@ -1,0 +1,20 @@
+#!/bin/bash
+#
+# Convert php variables from casemerCase format to underscore
+#
+# @author Jian (Robin) ZHAO 
+#
+# @email boborabit@gmail.com
+
+filename=$1
+
+sed -i -r 's/(\$[a-z])([A-Z])([a-zA-Z_]+)/\1_\L\2\E\3/g' ${filename}
+
+regexString='(\$[a-z][a-z_]+)([A-Z])([a-zA-Z_]+)';
+grep -E ${regexString} ${filename} > /dev/null
+
+while [ $? -eq 0 ]; do
+  sed -i -r "s/${regexString}/\1_\L\2\E\3/g" ${filename}
+  grep -E ${regexString} ${filename} > /dev/null
+done
+

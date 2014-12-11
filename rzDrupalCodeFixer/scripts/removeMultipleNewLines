@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Convert php variables from underscore format to camelCase
+#
+# @author Jian (Robin) ZHAO 
+#
+# @email boborabit@gmail.com
+
+sed -i '/^$/N;/^\n$/D' $1

@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Format concat operator.
+#
+# @author Jian (Robin) ZHAO 
+#
+# @email boborabit@gmail.com
+
+filename=$1
+
+
+sed -i -r 's/("[^"\)]*?")\s*\.\s*([^\n])/\1 . \2/g' ${filename}
+sed -i -r "s/('[^'\)]*?')\s*\.\s*([^\n])/\1 . \2/g" ${filename}
+sed -i -r "s/(\$[a-zA-Z_])\s*\.\s*([^\n])/\1 . \2/g" ${filename}
