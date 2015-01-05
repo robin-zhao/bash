@@ -1,0 +1,77 @@
+" enable syntax checking for php files.
+execute pathogen#infect()
+let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+" :Helptags  to activate.
+
+" set tags=./tags,./.tags,/home/robin/www/pharosui.robin/.tags
+
+" Show number line.
+"set nu
+
+" Syntax highlighing.
+syntax on
+set background=dark
+" set background=light
+" colorscheme solarized
+" let solarized_termcolors=256
+colorscheme desert
+
+" match brakets
+set showmatch
+
+" detect file type
+filetype plugin indent on
+
+set t_Co=256
+
+set cursorline
+"set cursorcolumn
+set hlsearch
+set ignorecase
+
+set bsdir=buffer
+set autochdir
+" enter folder of current edited file.
+autocmd BufEnter * exec "cd %:p:h"
+
+set paste
+
+" no vi
+set nocompatible
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
+
+" fold level
+set foldlevel=2
+set foldmethod=manual
+set foldlevelstart=1
+" let php_folding=1
+" let javaScript_fold=1
+" let perl_fold=1
+" let r_syntax_folding=1
+" let vimsyn_folding='af'
+let xml_syntax_folding=1
+
+" blank replace tab
+set tabstop=4
+set expandtab
+
+set autoindent
+" set smarttab
+set shiftwidth=4
+set wrap
+set linebreak
+set ruler
+
+au FileType php setlocal dict+=/home/robin/bin/php_funclist.txt
+au FileType html setlocal dict+=/home/robin/bin/php_funclist.txt
+au FileType htm setlocal dict+=/home/robin/bin/php_funclist.txt
+ 
+" drupal file as php.
+au BufRead,BufNewFile *.module setfiletype php
+au BufRead,BufNewFile *.inc setfiletype php
+au BufRead,BufNewFile *.class setfiletype php
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+
