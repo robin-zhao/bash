@@ -1,0 +1,86 @@
+#color configurations.
+ECOLOR='\[\e[0m\]'
+
+FBLACK='\[\e[0;30m\]'
+FRED='\[\e[0;31m\]'
+FGREEN='\[\e[0;32m\]'
+FYELLOW='\[\e[0;33m\]'
+FBLUE='\[\e[0;34m\]'
+FMAGENTA='\[\e[0;35m\]'
+FCYAN='\[\e[0;36m\]'
+FWHITE='\[\e[0;37m\]'
+
+BBLACK='\[\e[0;40m\]'
+BRED='\[\e[0;41m\]'
+BGREEN='\[\e[0;42m\]'
+BYELLOW='\[\e[0;43m\]'
+BBLUE='\[\e[0;44m\]'
+BMAGENTA='\[\e[0;45m\]'
+BCYAN='\[\e[0;46m\]'
+FWHITE='\[\e[0;37m\]'
+
+# git branch helper
+#PS1="\[\e[34m\]\h\[\e[m\] \[\e[36m\]\w\[\e[m\]\[\e[33m\]\$(git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/{\1}/')\[\e[m\]\[\e[36m\]\$\[\e[m\] "
+PS1="${FBLUE}\h${ECOLOR} ${FCYAN}\w${ECOLOR}${FYELLOW}\$(git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/{\1}/')${ECOLOR} \$ "
+
+#ssh shortcut
+alias naboo="ssh -p 2222 shodev@office.alexanderstreet.com"
+
+#alexstreet-fc/da68ay
+alias ftp_limelight="ftp alexstreet.upload.llnw.net"
+alias pharos-build1='ssh pharos-build1 -t "cd /var/db/xapian;bash"'
+alias pharos-build2='ssh pharos-build2 -t "cd /var/db/xapian;bash"'
+
+export EDITOR=/usr/bin/vim
+
+# drush site-set @dev.robin
+
+PATH=$PATH:~/bin:/usr/games/:~/github/bash/misc:~/github/YA-Drupal-Code-Standard-Fixer:~/bin/lib/sae
+export PATH
+
+PROJECTDIR=~/www
+GITHUBDIR=~/github
+SYSCONFIGDIR=${GITHUBDIR}/sysconfig
+
+UIDIR=${PROJECTDIR}/pharosui.robin
+APIDIR=${PROJECTDIR}/localhost.pharosapi
+CLIENTDIR=${UIDIR}/sites/all/vendor/alexanderstreet/pharosapiclient
+UITEMPLATEDIR=${UIDIR}/sites/all/themes/pharosui_omega/templates
+
+APUIDIR=${PROJECTDIR}/admin.robin
+APCLIENTDIR=${APUIDIR}/sites/all/vendor/alexanderstreet/pharosapiclient
+
+UNIPLAYERDIR=${UIDIR}/sites/all/vendor/alexanderstreet/uniplayer
+
+CDNDIR=${SYSCONFIGDIR}/pharos-cdn/var/www/pharos-cdn
+export PROJECTDIR UIDIR APIDIR CLIENTDIR UITEMPLATEDIR UNIPLAYERDIR APUIDIR APCLIENTDIR
+
+alias ui="cd ${UIDIR}/sites/all/modules/lazr_modules"
+alias uiSite="cd ${UIDIR}/sites/dev.robin"
+alias uiTest="cd ${UIDIR}/sites/all/tests/func/page"
+alias uiTemplate="cd ${UITEMPLATEDIR}"
+
+alias api="cd ${APIDIR}"
+alias apiTest="cd ${APIDIR}/src/AlexanderStreet/Pharos/APIBundle/Tests"
+
+alias client="cd ${CLIENTDIR}"
+alias clientTest="cd ${CLIENTDIR}/src/AlexanderStreet/Pharos/APIClientBundle/Tests"
+
+alias apui="cd ${APUIDIR}/sites/all/modules"
+alias apuiSite="cd ${APUIDIR}/sites/dev.robin"
+alias apclient="cd ${APCLIENTDIR}"
+
+alias uniplayer="cd ${UNIPLAYERDIR}"
+
+alias cdn="cd ${CDNDIR}"
+
+alias viewApiCall="tail -f ${CLIENTDIR}/app/logs/monolog.log"
+alias viewApiCallAp="tail -f ${APCLIENTDIR}/app/logs/monolog.log"
+alias viewApiError="tail -f /var/log/apache2/localhost.pharosapi.error.log"
+
+export XDEBUG_CONFIG="idekey=netbeans-xdebug"
+
+if [ -e ~/symfony2-autocomplete.bash ]; then
+    . ~/symfony2-autocomplete.bash
+fi
+    
