@@ -1,6 +1,7 @@
 " enable syntax checking for php files.
 execute pathogen#infect()
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+"let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
+let g:syntastic_php_checkers = ['php']
 " :Helptags  to activate.
 
 " set tags=./tags,./.tags,/home/robin/www/pharosui.robin/.tags
