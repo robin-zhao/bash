@@ -35,7 +35,7 @@ export EDITOR=/usr/bin/vim
 
 # drush site-set @dev.robin
 
-PATH=$PATH:~/bin:/usr/games/:~/github/bash/misc:~/github/YA-Drupal-Code-Standard-Fixer:~/bin/lib/sae
+PATH=$PATH:~/bin:/usr/games/:~/github/rzBash/misc:~/github/YA-Drupal-Code-Standard-Fixer:~/bin/lib/sae
 export PATH
 
 PROJECTDIR=~/www
