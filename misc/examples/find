@@ -1,4 +1,17 @@
 #!/bin/bash
 
 # find except git dir.
-find . -path ./.git -prune -o -print0
+#find . -path ./.git -prune -o -print0
+
+#find . -path './fli*' -prune -o -print
+
+
+# find .module and .inc , except under contributed folder
+#find . -regextype egrep -regex .*.module\|.*.inc -not -path "./contributed/*"
+
+# delete *.module
+#find . -name *.module -delete;
+
+
+# execute command on each one of occurance.
+#find . -name *.module -exec bash -c 'echo $0' {} \;

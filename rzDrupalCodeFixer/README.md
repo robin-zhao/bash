@@ -35,3 +35,10 @@ is recommanded.
  - replace private keyword by protected.
  - split else keyword into next line.
 
+## TODO
+
+   - is_null should not convert to is_NULL
+   - dummy function doc align problem for class method.
+   - file doc problem for template file without php tag.
+
+   - remove constructor that has only parent call.
