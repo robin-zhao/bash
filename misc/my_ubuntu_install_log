@@ -1,0 +1,63 @@
+sudo apt-get install aptitude
+sudo aptitude install dos2unix npm imagemagick vlc
+sudo aptitude install terminator vim git kcachegrind
+sudo aptitude install mysql-server php5 apache2
+sudo aptitude install php5-dev php5-xdebug php5-memcached php5-curl php5-mcrypt php5-gd
+sudo aptitude install mysql-workbench
+sudo aptitude install curl drush phpunit php-codesniffer
+
+- chinese input
+sudo apt-get install ibus-pinyin
+sudo im-config 
+
+- skype
+Software and updates > Other Software > Canonical Partners
+sudo aptitude install skype
+
+- diffmerge http://www.sourcegear.com/diffmerge/downloaded.php
+sudo dpkg -i diffmerge_4.2.0.697.stable_amd64.deb
+
+- netbeans
+sudo aptitude install openjdk-7-jre
+https://netbeans.org/downloads/start.html?platform=linux&lang=en&option=php
+
+- apache2
+sudo aptitude install libapache2-mod-python
+sudo a2enmod rewrite
+sudo a2enmod macro
+
+ln -s github/rzBash/myConfig/vimrc .vimrc
+ln -s github/rzBash/myConfig/bash_aliases .bash_alias
+ln -s github/dircolors-solarized/dircolors.256dark .dircolors
+
+- nutstore
+https://jianguoyun.com/static/exe/installer/ubuntu/nautilus_nutstore_amd64.deb
+sudo dpkg -i nautilus_nutstore_amd64.deb
+ln -s Nutstore/Documents Documents
+ln -s Nutstore/bin bin && chmod 755 bin/*
+
+- goagent
+sudo ./recompile_python
+
+- composer
+cd /usr/local/bin
+curl -sS https://getcomposer.org/installer | sudo php
+sudo ln -s composer.phar composer
+
+- php solr
+sudo aptitude install libcurl4-gnutls-dev libxml2-dev libpcre3-dev
+sudo pecl install -f solr-2.0.0
+
+- memcached
+sudo aptitude install libmemcached-dev
+http://stackoverflow.com/questions/24407095/error-when-installing-pecl-memcached
+
+- ctags
+http://ctags.sourceforge.net/
+
+- screen recorder 
+http://www.maartenbaert.be/simplescreenrecorder/#what-is-simplescreenrecorder
+
+
+
+

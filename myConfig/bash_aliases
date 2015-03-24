@@ -32,8 +32,7 @@ alias pharos-build1='ssh pharos-build1 -t "cd /var/db/xapian;bash"'
 alias pharos-build2='ssh pharos-build2 -t "cd /var/db/xapian;bash"'
 
 export EDITOR=/usr/bin/vim
-
-# drush site-set @dev.robin
+export XDEBUG_CONFIG="idekey=netbeans-xdebug"
 
 PATH=$PATH:~/bin:/usr/games/:~/github/rzBash/misc:~/github/rzBash/rzDrupalCodeFixer:~/bin/lib/sae
 export PATH
@@ -47,13 +46,14 @@ APIDIR=${PROJECTDIR}/localhost.pharosapi
 CLIENTDIR=${UIDIR}/sites/all/vendor/alexanderstreet/pharosapiclient
 UITEMPLATEDIR=${UIDIR}/sites/all/themes/pharosui_omega/templates
 
-APUIDIR=${PROJECTDIR}/admin.robin
-APCLIENTDIR=${APUIDIR}/sites/all/vendor/alexanderstreet/pharosapiclient
-
 UNIPLAYERDIR=${UIDIR}/sites/all/vendor/alexanderstreet/uniplayer
 
 CDNDIR=${SYSCONFIGDIR}/pharos-cdn/var/www/pharos-cdn
-export PROJECTDIR UIDIR APIDIR CLIENTDIR UITEMPLATEDIR UNIPLAYERDIR APUIDIR APCLIENTDIR
+
+UIAPDIR=${PROJECTDIR}/admin.robin
+CLIENTAPDIR=${UIAPDIR}/sites/all/vendor/alexanderstreet/pharosapiclient
+
+export PROJECTDIR UIDIR APIDIR CLIENTDIR UITEMPLATEDIR UNIPLAYERDIR UIAPDIR APCLIENTDIR
 
 alias ui="cd ${UIDIR}/sites/all/modules/lazr_modules"
 alias uiSite="cd ${UIDIR}/sites/dev.robin"
@@ -66,21 +66,18 @@ alias apiTest="cd ${APIDIR}/src/AlexanderStreet/Pharos/APIBundle/Tests"
 alias client="cd ${CLIENTDIR}"
 alias clientTest="cd ${CLIENTDIR}/src/AlexanderStreet/Pharos/APIClientBundle/Tests"
 
-alias apui="cd ${APUIDIR}/sites/all/modules"
-alias apuiSite="cd ${APUIDIR}/sites/dev.robin"
-alias apclient="cd ${APCLIENTDIR}"
-
 alias uniplayer="cd ${UNIPLAYERDIR}"
-
 alias cdn="cd ${CDNDIR}"
 
 alias viewApiCall="tail -f ${CLIENTDIR}/app/logs/monolog.log"
-alias viewApiCallAp="tail -f ${APCLIENTDIR}/app/logs/monolog.log"
+alias viewApiCallAp="tail -f ${CLIENTAPDIR}/app/logs/monolog.log"
 alias viewApiError="tail -f /var/log/apache2/localhost.pharosapi.error.log"
 
-export XDEBUG_CONFIG="idekey=netbeans-xdebug"
+# admin portal related directories.
+alias uiAp="cd ${UIAPDIR}/sites/all/modules/custom"
+alias uiApSite="cd ${UIAPDIR}/sites/dev.robin"
+alias clientAp="cd ${CLIENTAPDIR}"
 
 if [ -e ~/symfony2-autocomplete.bash ]; then
     . ~/symfony2-autocomplete.bash
 fi
-    
