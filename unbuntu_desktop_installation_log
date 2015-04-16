@@ -59,6 +59,8 @@ http://ctags.sourceforge.net/
 - screen recorder 
 http://www.maartenbaert.be/simplescreenrecorder/#what-is-simplescreenrecorder
 
+- install grunt
+sudo npm install -g grunt-cli bower
 
 
 
