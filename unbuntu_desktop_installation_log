@@ -5,7 +5,8 @@ sudo aptitude install mysql-server php5 apache2
 sudo aptitude install php5-dev php5-xdebug php5-memcached php5-curl php5-mcrypt php5-gd
 sudo aptitude install mysql-workbench
 sudo aptitude install curl drush phpunit php-codesniffer
-sudo aptitude install adobe-flashplugin
+sudo aptitude install adobe-flashplugin python-pip
+sudo pip install thefuck
 
 - chinese input
 sudo apt-get install ibus-pinyin
