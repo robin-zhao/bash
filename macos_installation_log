@@ -1,0 +1,16 @@
+Mac Newbie Installation guide
+
+homebrew
+  http://blog.sina.com.cn/s/blog_415bd7070102v147.html
+
+brew insall homebrew/php/phpunit
+brew install wget
+brew install rename
+brew install imagemagick
+sudo php /usr/lib/php/install-pear-nozlib.phar
+brew install npm
+sudo pear install PHP_CodeSniffer
+brew install Caskroom/cask/mysqlworkbench
+brew install Caskroom/cask/xquartz
+
+brew install PHP56 composer
