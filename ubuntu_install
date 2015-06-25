@@ -58,7 +58,7 @@ cd github
 cd ~
 
 # nutstore
-if [ ! -f ~/nautilus_nutstore_amd64.deb ]; then
+if [ "" = "$(which nautilus)" ]; then
   wget https://jianguoyun.com/static/exe/installer/ubuntu/nautilus_nutstore_amd64.deb
   sudo dpkg -i ~/nautilus_nutstore_amd64.deb
 fi
