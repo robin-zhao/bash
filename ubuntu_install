@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ~
+
 sudo apt-get install -y aptitude
 
 # Software and updates > Other Software > Canonical Partners
@@ -38,18 +40,29 @@ sudo aptitude install -y openjdk-7-jre
 sudo aptitude install ibus-pinyin
 
 # apache2
-sudo aptitude install -y apache2
-sudo a2enmod rewrite
-sudo a2enmod macro
-sudo service apache2 restart
+if [ "" = "$(which apache2)" ]; then
+  sudo aptitude install -y apache2
+  sudo a2enmod rewrite
+  sudo a2enmod macro
+  sudo service apache2 restart
+fi 
 
-#ln -s github/rzBash/myConfig/vimrc .vimrc
-#ln -s github/rzBash/myConfig/bash_aliases .bash_alias
-#ln -s github/dircolors-solarized/dircolors.256dark .dircolors
+[ ! -d ~/github ] && mkdir ~/github
+cd github
+[ ! -d ./dircolors-solarized ] && git clone git@github.com:seebi/dircolors-solarized.git
+[ ! -f ~/.dircolors ] && ln -s ~/github/dircolors-solarized/dircolors.256dark ~/.dircolors
+
+[ ! -d ./rzBash ] && git clone git@github.com:robin-zhao/rzBash.git
+[ ! -f ~/.bash_aliases ] && ln -s ~/github/rzBash/myConfig/bash_aliases ~/.bash_aliases
+
+cd ~
 
 # nutstore
-# https://jianguoyun.com/static/exe/installer/ubuntu/nautilus_nutstore_amd64.deb
-# sudo dpkg -i nautilus_nutstore_amd64.deb
+if [ ! -f ~/nautilus_nutstore_amd64.deb ]; then
+  wget https://jianguoyun.com/static/exe/installer/ubuntu/nautilus_nutstore_amd64.deb
+  sudo dpkg -i ~/nautilus_nutstore_amd64.deb
+fi
+# Login and then do:
 # ln -s Nutstore/Documents Documents
 # ln -s Nutstore/bin bin && chmod 755 bin/*
 
@@ -69,9 +82,10 @@ sudo aptitude install -y libmemcached-dev
 # chinese input
 # sudo im-config 
 
-if [ "" = "$(which diffmerge)" ]; then
 # diffmerge http://www.sourcegear.com/diffmerge/downloaded.php
-# sudo dpkg -i /home/robin/Downloads/diffmerge_4.2.0.697.stable_amd64.deb
+if [ "" = "$(which diffmerge)" ]; then
+  wget http://download-us.sourcegear.com/DiffMerge/4.2.0/diffmerge_4.2.0.697.stable_amd64.deb
+  sudo dpkg -i ~/diffmerge_4.2.0.697.stable_amd64.deb
 fi
 
 # https://netbeans.org/downloads/start.html?platform=linux&lang=en&option=php
