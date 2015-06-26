@@ -11,10 +11,10 @@ sudo aptitude install -y vim dos2unix
 sudo aptitude install -y imagemagick terminator kcachegrind
 sudo aptitude install -y git git-svn
 sudo aptitude install -y mysql-server mysql-workbench
-sudo aptitude install -y curl
+sudo aptitude install -y curl ruby
 
 # php
-sudo aptitude install -y php5 php5-dev php5-xdebug php5-memcached php5-curl php5-mcrypt php5-gd
+sudo aptitude install -y php5 php5-dev php5-xdebug php5-memcached php5-curl php5-mcrypt php5-gd php5-intl
 sudo aptitude install -y phpunit php-codesniffer drush
 
 # php solr
@@ -57,7 +57,7 @@ cd github
 
 cd ~
 
-# nutstore
+# Nutstore
 if [ "" = "$(which nautilus)" ]; then
   wget https://jianguoyun.com/static/exe/installer/ubuntu/nautilus_nutstore_amd64.deb
   sudo dpkg -i ~/nautilus_nutstore_amd64.deb
@@ -66,20 +66,22 @@ fi
 # ln -s Nutstore/Documents Documents
 # ln -s Nutstore/bin bin && chmod 755 bin/*
 
-# goagent
+# Goagent
 # sudo ./recompile_python
 
 # memcached
 sudo aptitude install -y libmemcached-dev
+# NOTE: dont need sasl support 
+# http://stackoverflow.com/a/24892703
 # http://stackoverflow.com/questions/24407095/error-when-installing-pecl-memcached
 
 # ctags
 # http://ctags.sourceforge.net/
 
-# screen recorder 
+# A Screen recorder / Mac OS can go with quicktime.
 # http://www.maartenbaert.be/simplescreenrecorder/#what-is-simplescreenrecorder
 
-# chinese input
+# Chinese input
 # sudo im-config 
 
 # diffmerge http://www.sourcegear.com/diffmerge/downloaded.php
@@ -88,4 +90,24 @@ if [ "" = "$(which diffmerge)" ]; then
   sudo dpkg -i ~/diffmerge_4.2.0.697.stable_amd64.deb
 fi
 
+# Setup git mergetool to diffmerge.
+# git config --global merge.tool "diffmerge"
+# git config --global user.mail "boborabit@qq.com"
+# git config --global user.name Jian Zhao"
+
+# Configure drupal & psr2 git submit hook.
+# Drupal Coding Standard comes from coder module.
+# sudo ln -s /home/robin/www/pharosui.robin/sites/all/modules/contributed/coder/coder_sniffer/Drupal /usr/share/php/PHP/CodeSniffer/Standards/Drupal
+# git clone http://git.drupal.org/sandbox/bevan.wishart/1441638.git git_pre_commit_hooks
+# copy the pre-commit_* files into your projects .git/hooks/ directory.
+#
+# do similar for PSR2 : /usr/share/php/PHP/CodeSniffer/Standards/PSR2
+
+
+# after install ruby
+sudo gem install rake
+sudo gem install bundler
+
 # https://netbeans.org/downloads/start.html?platform=linux&lang=en&option=php
+
+# sudo ln -s ~/github/rzBash/myConfig/sites-available /etc/apache2/sites-available
