@@ -1,28 +1,26 @@
 #!/bin/bash
 
+# change to 163 source
+# http://imcn.me/html/y2012/12474.html
+
 cd ~
 
 sudo apt-get install -y aptitude
 
 # Software and updates > Other Software > Canonical Partners
-sudo aptitude install skype
+#sudo aptitude install skype
 
 sudo aptitude install -y vim dos2unix
-sudo aptitude install -y imagemagick terminator kcachegrind
+sudo aptitude install -y imagemagick 
+# sudo aptitude install -y terminator kcachegrind
 sudo aptitude install -y git git-svn
-sudo aptitude install -y mysql-server mysql-workbench
+sudo aptitude install -y mysql-server
+#sudo aptitude install  mysql-workbench
 sudo aptitude install -y curl ruby
 
 # php
 sudo aptitude install -y php5 php5-dev php5-xdebug php5-memcached php5-curl php5-mcrypt php5-gd php5-intl
 sudo aptitude install -y phpunit php-codesniffer drush
-
-# php solr
-sudo aptitude install -y libcurl4-gnutls-dev libxml2-dev libpcre3-dev
-
-if [ ! -f /usr/lib/php5/20121212/solr.so ]; then
-  sudo pecl install -f solr-2.0.0
-fi
 
 # composer
 if [ "" = "$(which composer)" ]; then
@@ -35,9 +33,10 @@ fi
 sudo aptitude install -y npm
 [ "" = "$(which grunt)" ] && sudo npm install -g grunt-cli bower
 
-sudo aptitude install -y adobe-flashplugin python-pip
+# sudo aptitude install -y adobe-flashplugin python-pip
+sudo aptitude install -y python-pip
 sudo aptitude install -y openjdk-7-jre
-sudo aptitude install ibus-pinyin
+# sudo aptitude install ibus-pinyin
 
 # apache2
 if [ "" = "$(which apache2)" ]; then
@@ -58,10 +57,10 @@ cd github
 cd ~
 
 # Nutstore
-if [ "" = "$(which nautilus)" ]; then
-  wget https://jianguoyun.com/static/exe/installer/ubuntu/nautilus_nutstore_amd64.deb
-  sudo dpkg -i ~/nautilus_nutstore_amd64.deb
-fi
+#if [ "" = "$(which nautilus)" ]; then
+#  wget https://jianguoyun.com/static/exe/installer/ubuntu/nautilus_nutstore_amd64.deb
+#  sudo dpkg -i ~/nautilus_nutstore_amd64.deb
+#fi
 # Login and then do:
 # ln -s Nutstore/Documents Documents
 # ln -s Nutstore/bin bin && chmod 755 bin/*
@@ -85,10 +84,10 @@ sudo aptitude install -y libmemcached-dev
 # sudo im-config 
 
 # diffmerge http://www.sourcegear.com/diffmerge/downloaded.php
-if [ "" = "$(which diffmerge)" ]; then
-  wget http://download-us.sourcegear.com/DiffMerge/4.2.0/diffmerge_4.2.0.697.stable_amd64.deb
-  sudo dpkg -i ~/diffmerge_4.2.0.697.stable_amd64.deb
-fi
+#if [ "" = "$(which diffmerge)" ]; then
+#  wget http://download-us.sourcegear.com/DiffMerge/4.2.0/diffmerge_4.2.0.697.stable_amd64.deb
+#  sudo dpkg -i ~/diffmerge_4.2.0.697.stable_amd64.deb
+#fi
 
 # Setup git mergetool to diffmerge.
 # git config --global merge.tool "diffmerge"
@@ -111,3 +110,10 @@ sudo gem install bundler
 # https://netbeans.org/downloads/start.html?platform=linux&lang=en&option=php
 
 # sudo ln -s ~/github/rzBash/myConfig/sites-available /etc/apache2/sites-available
+
+# php solr
+sudo aptitude install -y make libcurl4-gnutls-dev libxml2-dev libpcre3-dev
+if [ ! -f /usr/lib/php5/20121212/solr.so ]; then
+  sudo pecl install -f solr-2.0.0
+fi
+
