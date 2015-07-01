@@ -3,6 +3,9 @@
 # change to 163 source
 # http://imcn.me/html/y2012/12474.html
 
+# vagrant
+# http://www.vagrantbox.es/
+
 cd ~
 
 sudo apt-get install -y aptitude
