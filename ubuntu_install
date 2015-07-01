@@ -117,3 +117,5 @@ if [ ! -f /usr/lib/php5/20121212/solr.so ]; then
   sudo pecl install -f solr-2.0.0
 fi
 
+# GeoIp
+# http://dev.maxmind.com/geoip/legacy/geolite/
