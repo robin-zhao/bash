@@ -8,39 +8,46 @@
 # http://blog.csdn.net/samxx8/article/details/38943395
 
 cd ~
-
 sudo apt-get install -y aptitude
 
-# Software and updates > Other Software > Canonical Partners
-#sudo aptitude install skype
+function rzInstall()
+{
+  libname=$1
+  cmdname=${2:-$libname}
+   
+  if [ "" = "$(which $cmdname)" ]; then
+    sudo aptitude install -y $libname 
+  fi
+}
 
-sudo aptitude install -y vim dos2unix
-sudo aptitude install -y imagemagick 
-# sudo aptitude install -y terminator kcachegrind
-sudo aptitude install -y git git-svn
-sudo aptitude install -y mysql-server
-#sudo aptitude install  mysql-workbench
-sudo aptitude install -y curl ruby
+rzInstall mysql-server mysql
+rzInstall vim
+rzInstall dos2unix
+rzInstall imagemagick convert
+rzInstall git
+rzInstall curl
 
-# php
-sudo aptitude install -y php5 php5-dev php5-xdebug php5-memcached php5-curl php5-mcrypt php5-gd php5-intl
-sudo aptitude install -y phpunit php-codesniffer drush
 
-# composer
-if [ "" = "$(which composer)" ]; then
+# Install no executoer lib.
+sudo aptitude install -y git-svn
+
+## php
+if [ "" = "$(which php)" ]; then
+  sudo aptitude install -y php5 php5-dev php5-xdebug php5-memcached php5-curl php5-mcrypt php5-gd php5-intl
+  sudo aptitude install -y phpunit php-codesniffer drush
+
   curl -sS https://getcomposer.org/installer | sudo php
   sudo mv composer.phar /usr/local/bin/
   sudo ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 fi
+
 
 # install npm
 sudo aptitude install -y npm
 [ "" = "$(which grunt)" ] && sudo npm install -g grunt-cli bower
 
 # sudo aptitude install -y adobe-flashplugin python-pip
-sudo aptitude install -y python-pip
 sudo aptitude install -y openjdk-7-jre
-# sudo aptitude install ibus-pinyin
 
 # apache2
 if [ "" = "$(which apache2)" ]; then
@@ -59,6 +66,12 @@ cd github
 [ ! -f ~/.bash_aliases ] && ln -s ~/github/rzBash/myConfig/bash_aliases ~/.bash_aliases
 
 cd ~
+
+# php solr
+sudo aptitude install -y make libcurl4-gnutls-dev libxml2-dev libpcre3-dev
+if [ ! -f /usr/lib/php5/20121212/solr.so ]; then
+  sudo pecl install -f solr-2.0.0
+fi
 
 # Nutstore
 #if [ "" = "$(which nautilus)" ]; then
@@ -107,19 +120,26 @@ sudo aptitude install -y libmemcached-dev
 # do similar for PSR2 : /usr/share/php/PHP/CodeSniffer/Standards/PSR2
 
 
+# sudo aptitude install -y python-pip
 # after install ruby
-sudo gem install rake
-sudo gem install bundler
+# sudo gem install rake
+# sudo gem install bundler
 
 # https://netbeans.org/downloads/start.html?platform=linux&lang=en&option=php
 
 # sudo ln -s ~/github/rzBash/myConfig/sites-available /etc/apache2/sites-available
 
-# php solr
-sudo aptitude install -y make libcurl4-gnutls-dev libxml2-dev libpcre3-dev
-if [ ! -f /usr/lib/php5/20121212/solr.so ]; then
-  sudo pecl install -f solr-2.0.0
-fi
 
 # GeoIp
 # http://dev.maxmind.com/geoip/legacy/geolite/
+
+ 
+# For graphic environment.
+#
+# Software and updates > Other Software > Canonical Partners
+# sudo aptitude install skype
+# sudo aptitude install -y terminator kcachegrind
+# sudo aptitude install  mysql-workbench
+# sudo aptitude install ibus-pinyin
+
+
