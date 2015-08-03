@@ -1,7 +1,7 @@
 " enable syntax checking for php files.
-execute pathogen#infect()
+" execute pathogen#infect()
 "let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd']
-let g:syntastic_php_checkers = ['php']
+" let g:syntastic_php_checkers = ['php']
 " :Helptags  to activate.
 
 " set tags=./tags,./.tags,/home/robin/www/pharosui.robin/.tags
@@ -74,5 +74,5 @@ au BufRead,BufNewFile *.module setfiletype php
 au BufRead,BufNewFile *.inc setfiletype php
 au BufRead,BufNewFile *.class setfiletype php
 
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+" set runtimepath^=~/.vim/bundle/ctrlp.vim
 
